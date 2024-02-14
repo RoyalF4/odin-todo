@@ -29,6 +29,15 @@ function createTextInput(name, placeholderText, required) {
     return input;
 }
 
+function createButtonWithImage(id, image) {
+    const button = createElementWithId('button', `${id}Btn`);
+    const img = createElementWithId('img', `${id}Img`);
+    img.src = image;
+    button.appendChild(img);
+
+    return button;
+}
+
 function createHeader() {
     const header = createElement('header');
     const headerLogo = createElement('div');
@@ -44,4 +53,4 @@ function createMain() {
     return main;
 }
 
-export { createElement, createElementWithClasses, createElementWithId, createHeader, createMain, createTextInput };
+export { createElement, createElementWithClasses, createElementWithId, createHeader, createMain, createTextInput, createButtonWithImage };

@@ -1,4 +1,4 @@
-import { createElement, createElementWithClasses, createElementWithId } from "./createDOM.js";
+import { createElementWithClasses, createElementWithId, createButtonWithImage } from "./createDOM.js";
 import { projects } from "../index.js";
 import { addProjectEvent } from "./events.js";
 import { createAddProjectModal } from "./modals.js";
@@ -18,9 +18,13 @@ function createSidebar() {
 
 function createSidebarItem(project) {
     const container = createElementWithClasses('div', 'sidebarItem')
-    const button = createElementWithClasses('button', 'sidebarItemBtn');
-    button.textContent = project.title;
-    container.appendChild(button);
+    const projectButton = createElementWithClasses('button', 'sidebarItemBtn');
+    projectButton.textContent = project.title;
+    const deleteButton = createButtonWithImage('projectDelete', '../src/images/delete.svg');
+    const editButton = createButtonWithImage('projectEdit', '../src/images/edit.svg');
+    container.appendChild(projectButton);
+    container.appendChild(deleteButton);
+    container.appendChild(editButton);
     
     return container;
 }

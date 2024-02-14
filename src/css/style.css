@@ -25,3 +25,8 @@ main {
     height: 100vh;
     background: lightgreen;
 }
+
+#projectDeleteImg,
+#projectEditImg {
+    width: 20px;
+}
