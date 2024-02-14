@@ -1,0 +1,27 @@
+body {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 100px 1fr;
+}
+
+header {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    grid-column: span 2;
+    background: black;
+    color: white;
+}
+
+#sidebar {
+    width: 200px;
+    height: 100vh;
+    background: gray;
+}
+
+main {
+    height: 100vh;
+    background: lightgreen;
+}
