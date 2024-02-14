@@ -13,7 +13,6 @@ function submitProjectEvent(event) {
     const newProject = new Project(dataObject.title);
     projects.addProject(newProject);
     sidebarProjects.appendChild(createSidebarItem(newProject));
-    console.log(projects.list)
     addProjectModal.close();
     addProjectForm.reset();
 }
