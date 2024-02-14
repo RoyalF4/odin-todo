@@ -12,7 +12,7 @@ class Project {
 
     set title(title) {
         this._title = title;
-    }
+    } 
 
     addTodo(todo) {
         this._todoList.push(todo)

@@ -1,3 +1,5 @@
+import { projects } from "../index.js";
+
 function createElement(element) {
     return document.createElement(element);
 }
@@ -17,6 +19,16 @@ function createElementWithId(element, id) {
     return newElement;
 }
 
+function createTextInput(name, placeholderText, required) {
+    const input = createElement('input');
+    input.type = 'text';
+    input.name = name;
+    input.placeholder = placeholderText;
+    input.required = required;
+
+    return input;
+}
+
 function createHeader() {
     const header = createElement('header');
     const headerLogo = createElement('div');
@@ -27,16 +39,9 @@ function createHeader() {
     return header;
 }
 
-function createSidebar() {
-    const sidebar = createElementWithId('div', 'sidebar');
-    return sidebar;
-}
-
 function createMain() {
     const main = document.createElement('main');
     return main;
 }
 
-
-
-export { createElement, createElementWithClasses, createElementWithId, createHeader, createMain, createSidebar };
+export { createElement, createElementWithClasses, createElementWithId, createHeader, createMain, createTextInput };

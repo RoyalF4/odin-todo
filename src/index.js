@@ -3,7 +3,7 @@ import './css/style.css';
 import Todo from './modules/Todo.js';
 import Project from './modules/Project.js';
 import { pageLoad } from './modules/pageLoad.js';
-import { createElement, createElementWithClasses, createElementWithId } from './modules/createDOM.js';
+import ProjectList from './modules/ProjectList.js';
 
 
 // test data ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -17,16 +17,16 @@ const project1 = new Project('Project1');
 project1.addTodo(todo2);
 project1.addTodo(todo3);
 
-const projects = [defaultProject, project1];
+const projects = new ProjectList([defaultProject, project1]);
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 const body = document.querySelector('body');
-const header = document.querySelector('header');
-const sidebar = document.querySelector('#sidebar');
-const main = document.querySelector('main');
-
-
 pageLoad();
+const header = document.querySelector('header');
+const sidebarProjects = document.querySelector('#sidebarProjects');
+const main = document.querySelector('main');
+const addProjectModal = document.querySelector('#addProjectModal');
+const addProjectForm = document.querySelector('#addProjectForm');
 
-export { body, header, sidebar, main};
+
+export { body, header, sidebarProjects, main, projects, addProjectModal, addProjectForm};
