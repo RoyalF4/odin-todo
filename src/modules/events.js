@@ -45,10 +45,13 @@ function projectDelete(event) {
 
 function deleteProjectEvent(event) {
     event.preventDefault();
-    // const id = event.target.type == undefined ? event.target.parentElement.getAttribute('data-uuid') : event.target.getAttribute('data-uuid');
     const container = document.querySelector(`#container-${currentProjectToDelete}`);
     projects.removeProject(currentProjectToDelete);
     container.remove();
+    if(projects.list.length == 0) {
+        const mainHeader = document.querySelector('#mainHeader');
+        mainHeader.textContent = '';
+    }
     deleteConfirmModal.close();
 }
 
@@ -61,6 +64,10 @@ function submitProjectEvent(event) {
     const formData = new FormData(addProjectForm);
     const dataObject = Object.fromEntries(formData);
     const newProject = new Project(dataObject.title);
+    if(projects.list.length == 0) {
+        const mainHeader = document.querySelector('#mainHeader');
+        mainHeader.textContent = dataObject.title;
+    }
     projects.addProject(newProject);
     sidebarProjects.appendChild(createSidebarItem(newProject));
     addProjectModal.close();

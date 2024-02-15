@@ -1,6 +1,7 @@
-import { createHeader, createMain } from "./createDOM.js";
+import { createHeader } from "./createDOM.js";
 import { createSidebar } from "./sidebar.js";
 import { body } from "../index.js";
+import { createMain } from "./mainContent.js";
 
 function pageLoad() {
 

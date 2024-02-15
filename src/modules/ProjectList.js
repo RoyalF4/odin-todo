@@ -26,6 +26,12 @@ class ProjectList {
                 this._list.splice(index, 1);
             }
         }
-        console.log(this._list);
+    }
+
+    getTitleWithId(id) {
+        for(const project of this._list) {
+            if(id == project.id) return project.title;
+        }
+        console.log('id not found');
     }
 }

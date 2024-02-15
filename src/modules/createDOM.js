@@ -65,9 +65,4 @@ function createHeader() {
     return header;
 }
 
-function createMain() {
-    const main = document.createElement('main');
-    return main;
-}
-
-export { createElement, createElementWithClasses, createElementWithId, createHeader, createMain, createTextInput, createButtonWithImage, createInputRename };
+export { createElement, createElementWithClasses, createElementWithId, createHeader, createTextInput, createButtonWithImage, createInputRename };

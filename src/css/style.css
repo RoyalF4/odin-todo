@@ -69,11 +69,6 @@ header {
     background: rgb(88, 28, 28);
 }
 
-main {
-    height: 100vh;
-    background: lightgreen;
-}
-
 .projectDeleteBtn,
 .projectEditBtn {
     padding: 0;
@@ -89,6 +84,24 @@ main {
 .projectDeleteImg:active,
 .projectEditImg:active {
     transform: scale(.9);
+}
+
+main {
+    height: 100vh;
+    background: lightgreen;
+    padding: 10px;
+}
+
+#mainHeader {
+    width: 100%;
+    height: 50px;
+    background: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
 }
 
 .hidden {
