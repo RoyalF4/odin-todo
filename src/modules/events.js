@@ -2,7 +2,7 @@ import { addProjectModal, sidebarProjects, projects, addProjectForm, deleteConfi
 import Project from "./Project.js";
 import { confirmDeleteModal } from "./modals.js";
 import { createSidebarItem } from "./sidebar.js";
-import { setActiveProject } from "./util.js";
+import { setActiveProject, getActiveProjectId } from "./util.js";
 
 let currentProjectToDelete;
 
@@ -48,7 +48,7 @@ function deleteProjectEvent(event) {
     const container = document.querySelector(`#container-${currentProjectToDelete}`);
     projects.removeProject(currentProjectToDelete);
     container.remove();
-    if(projects.list.length == 0) {
+    if((projects.list.length == 0) || (currentProjectToDelete == getActiveProjectId())) {
         const mainHeader = document.querySelector('#mainHeader');
         mainHeader.textContent = '';
     }

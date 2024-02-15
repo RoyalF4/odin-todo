@@ -9,6 +9,26 @@ class Todo {
         this._completed = false;
     }
 
+    get title() {
+        return this._title;
+    }
+
+    get description() {
+        return this.description;
+    }
+
+    get dueDate() {
+        return this._dueDate;
+    }
+
+    get priority() {
+        return this._priority;
+    }
+
+    get completed() {
+        return this._completed;
+    }
+
     toggleCompleted() {
         this._completed = !this._completed;
     }

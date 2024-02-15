@@ -21,6 +21,10 @@ class Project {
         return this._id;
     }
 
+    get todo() {
+        return this._todoList;
+    }
+
     addTodo(todo) {
         this._todoList.push(todo)
     }

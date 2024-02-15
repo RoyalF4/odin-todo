@@ -34,4 +34,11 @@ class ProjectList {
         }
         console.log('id not found');
     }
+
+    getProjectWithId(id) {
+        for(const project of this._list) {
+            if(id == project.id) return project;
+        }
+        console.log('did not find id')
+    }
 }
