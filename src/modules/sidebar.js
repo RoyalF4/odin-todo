@@ -1,7 +1,10 @@
-import { createElementWithClasses, createElementWithId, createButtonWithImage } from "./createDOM.js";
+import { createElementWithClasses, createElementWithId, createButtonWithImage, createInputRename } from "./createDOM.js";
 import { projects } from "../index.js";
-import { addProjectEvent } from "./events.js";
+import { addProjectEvent, projectRename, projectDelete, selectProject } from "./events.js";
 import { createAddProjectModal } from "./modals.js";
+import { setActiveProject } from "./util.js";
+
+let activeProject;
 
 function createSidebar() {
     const sidebar = createElementWithId('div', 'sidebar');
@@ -18,14 +21,31 @@ function createSidebar() {
 
 function createSidebarItem(project) {
     const container = createElementWithClasses('div', 'sidebarItem')
+    container.id = `container-${project.id}`;
+    container.dataset.uuid = project.id;
+    // set active project to first project on load
+    if(activeProject == undefined) {
+        setActiveProject(container);
+    }
+
     const projectButton = createElementWithClasses('button', 'sidebarItemBtn');
+    projectButton.id = `projectBtn-${project.id}`;
     projectButton.textContent = project.title;
+    projectButton.addEventListener('click', (event) => selectProject(event));
+    const editButtons = createElementWithClasses('div', 'editButtons');
     const deleteButton = createButtonWithImage('projectDelete', '../src/images/delete.svg');
-    const editButton = createButtonWithImage('projectEdit', '../src/images/edit.svg');
+    deleteButton.dataset.uuid = project.id;
+    deleteButton.addEventListener('click', (event) => projectDelete(event));
+    const renameButton = createButtonWithImage('projectEdit', '../src/images/edit.svg');
+    renameButton.dataset.uuid = project.id;
+    renameButton.addEventListener('click', (event) => projectRename(event));
+
+    container.appendChild(createInputRename(project));
     container.appendChild(projectButton);
-    container.appendChild(deleteButton);
-    container.appendChild(editButton);
-    
+    editButtons.appendChild(renameButton);
+    editButtons.appendChild(deleteButton);
+    container.appendChild(editButtons);
+
     return container;
 }
 
@@ -37,4 +57,4 @@ function createAddProjectButton() {
     return button;
 }
 
-export { createSidebar, createSidebarItem };
+export { createSidebar, createSidebarItem, activeProject };

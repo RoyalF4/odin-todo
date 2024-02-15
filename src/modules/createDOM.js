@@ -1,4 +1,5 @@
 import { projects } from "../index.js";
+import { submitFormRename } from "./events.js";
 
 function createElement(element) {
     return document.createElement(element);
@@ -30,12 +31,28 @@ function createTextInput(name, placeholderText, required) {
 }
 
 function createButtonWithImage(id, image) {
-    const button = createElementWithId('button', `${id}Btn`);
-    const img = createElementWithId('img', `${id}Img`);
+    const button = createElementWithClasses('button', `${id}Btn`);
+    button.type = 'text';
+    const img = createElementWithClasses('img', `${id}Img`);
     img.src = image;
     button.appendChild(img);
 
     return button;
+}
+
+function createInputRename(project) {
+    const form = createElementWithId('form', `form-${project.id}`)
+    form.addEventListener('submit', (event) => submitFormRename(event))
+    const input = createElementWithId('input', `input-${project.id}`);
+    input.classList.add('hidden');
+    input.type = 'text';
+    input.name = 'title';
+    input.value = project.title;
+    input.required = true;
+
+    form.appendChild(input);
+
+    return form;
 }
 
 function createHeader() {
@@ -53,4 +70,4 @@ function createMain() {
     return main;
 }
 
-export { createElement, createElementWithClasses, createElementWithId, createHeader, createMain, createTextInput, createButtonWithImage };
+export { createElement, createElementWithClasses, createElementWithId, createHeader, createMain, createTextInput, createButtonWithImage, createInputRename };

@@ -1,9 +1,12 @@
+import { createUniqueId } from "./createUID";
+
 export default Project;
 
 class Project {
     constructor(title) {
         this._title = title;
         this._todoList = [];
+        this._id = createUniqueId();
     }
 
     get title() {
@@ -13,6 +16,10 @@ class Project {
     set title(title) {
         this._title = title;
     } 
+
+    get id() {
+        return this._id;
+    }
 
     addTodo(todo) {
         this._todoList.push(todo)

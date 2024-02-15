@@ -4,6 +4,10 @@ body {
     grid-template-rows: 100px 1fr;
 }
 
+button {
+    padding: 0;
+}
+
 header {
     height: 100px;
     display: flex;
@@ -19,6 +23,43 @@ header {
     width: 200px;
     height: 100vh;
     background: gray;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebarItem {
+    display: flex;
+    height: 40px;
+}
+
+.sidebarItem > form {
+    display: flex;
+    align-items: center;
+}
+
+.sidebarItem > form > input {
+    box-sizing: border-box;
+    width: 150px;
+    height: 20px;
+}
+
+.sidebarItemBtn {
+    flex: 1;
+}
+
+.editButtons {
+    width: 50px;
+    display: flex;
+    align-items: center;
+}
+
+#sidebar button {
+    background: none;
+    border: none;
+}
+
+.sidebarItem:hover {
+    background: rgb(88, 28, 28);
 }
 
 main {
@@ -26,7 +67,27 @@ main {
     background: lightgreen;
 }
 
-#projectDeleteImg,
-#projectEditImg {
+.projectDeleteBtn,
+.projectEditBtn {
+    padding: 0;
+    width: 25px;
+    height: 25px;
+}
+
+.projectDeleteImg,
+.projectEditImg {
     width: 20px;
+}
+
+.projectDeleteImg:active,
+.projectEditImg:active {
+    transform: scale(.9);
+}
+
+.hidden {
+    display: none;
+}
+
+.active {
+    border-left: 10px solid green !important;
 }
