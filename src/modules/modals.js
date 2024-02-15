@@ -1,6 +1,6 @@
-import { createElementWithId, createTextInput } from "./createDOM";
+import { createElementWithId, createTextInput, createElement } from "./createDOM";
 import { body } from "../index.js";
-import { submitProjectEvent, closeAddProjectEvent } from "./events.js";
+import { submitProjectEvent, closeAddProjectEvent, closeDeleteModal, deleteProjectEvent } from "./events.js";
 
 const PLACEHOLDER_TEXT = {
     title: 'Enter project title...',
@@ -32,4 +32,31 @@ function createAddProjectModal() {
     body.appendChild(dialog);
 }
 
-export { createAddProjectModal } ;
+function confirmDeleteModal() {
+    const dialog = createElementWithId('dialog', 'deleteConfirmDialog');
+    const form = createElementWithId('form', 'deleteConfirmForm');
+    form.addEventListener('submit', (event) => deleteProjectEvent(event))
+
+    const prompt = createElement('div');
+    prompt.textContent =`Are you sure you want to delete your project?`;
+
+    const buttonContainer = createElement('div');
+
+    const yesButton = createElementWithId('button', 'deleteProjectSubmit');
+    yesButton.textContent = 'Yes';
+    yesButton.type = 'submit';
+    const noButton = createElementWithId('button', 'deleteProjectClose');
+    noButton.textContent = 'No';
+    noButton.type = 'button';
+    noButton.addEventListener('click', closeDeleteModal);
+
+    dialog.appendChild(form);
+    form.appendChild(prompt);
+    buttonContainer.appendChild(yesButton);
+    buttonContainer.appendChild(noButton);
+    form.appendChild(buttonContainer);
+
+    body.appendChild(dialog);
+}
+
+export { createAddProjectModal, confirmDeleteModal } ;

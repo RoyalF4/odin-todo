@@ -30,6 +30,7 @@ header {
 .sidebarItem {
     display: flex;
     height: 40px;
+    padding: 0 5px 0 0;
 }
 
 .sidebarItem > form {
@@ -39,12 +40,18 @@ header {
 
 .sidebarItem > form > input {
     box-sizing: border-box;
-    width: 150px;
+    width: 145px;
     height: 20px;
 }
 
 .sidebarItemBtn {
+    display: flex;
+    justify-content: start;
+    align-items: center;
     flex: 1;
+    font-weight: inherit;
+    color: inherit;
+    padding: 0 0 0 10px;
 }
 
 .editButtons {
@@ -89,5 +96,6 @@ main {
 }
 
 .active {
-    border-left: 10px solid green !important;
+    color: white;
+    font-weight: bold;
 }

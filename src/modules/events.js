@@ -1,7 +1,10 @@
-import { addProjectModal, sidebarProjects, projects, addProjectForm } from "../index.js";
+import { addProjectModal, sidebarProjects, projects, addProjectForm, deleteConfirmModal } from "../index.js";
 import Project from "./Project.js";
+import { confirmDeleteModal } from "./modals.js";
 import { createSidebarItem } from "./sidebar.js";
 import { setActiveProject } from "./util.js";
+
+let currentProjectToDelete;
 
 function selectProject(event) {
     setActiveProject(event.target);
@@ -36,10 +39,17 @@ function submitFormRename(event) {
 
 function projectDelete(event) {
     const id = event.target.type == undefined ? event.target.parentElement.getAttribute('data-uuid') : event.target.getAttribute('data-uuid');
-    console.log(id);
-    const container = document.querySelector(`#container-${id}`);
-    projects.removeProject(id);
+    currentProjectToDelete = id;
+    deleteConfirmModal.showModal();
+}
+
+function deleteProjectEvent(event) {
+    event.preventDefault();
+    // const id = event.target.type == undefined ? event.target.parentElement.getAttribute('data-uuid') : event.target.getAttribute('data-uuid');
+    const container = document.querySelector(`#container-${currentProjectToDelete}`);
+    projects.removeProject(currentProjectToDelete);
     container.remove();
+    deleteConfirmModal.close();
 }
 
 function addProjectEvent() {
@@ -62,4 +72,8 @@ function closeAddProjectEvent() {
     addProjectForm.reset();
 }
 
-export { addProjectEvent, submitProjectEvent, closeAddProjectEvent, projectRename, submitFormRename, projectDelete, selectProject };
+function closeDeleteModal() {
+    deleteConfirmModal.close()
+}
+
+export { addProjectEvent, submitProjectEvent, closeAddProjectEvent, projectRename, submitFormRename, projectDelete, selectProject, closeDeleteModal, deleteProjectEvent, currentProjectToDelete };

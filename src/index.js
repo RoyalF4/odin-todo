@@ -27,6 +27,7 @@ const sidebarProjects = document.querySelector('#sidebarProjects');
 const main = document.querySelector('main');
 const addProjectModal = document.querySelector('#addProjectModal');
 const addProjectForm = document.querySelector('#addProjectForm');
+const deleteConfirmModal = document.querySelector('#deleteConfirmDialog');
 
 
-export { body, header, sidebarProjects, main, projects, addProjectModal, addProjectForm};
+export { body, header, sidebarProjects, main, projects, addProjectModal, addProjectForm, deleteConfirmModal};

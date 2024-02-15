@@ -1,7 +1,7 @@
 import { createElementWithClasses, createElementWithId, createButtonWithImage, createInputRename } from "./createDOM.js";
 import { projects } from "../index.js";
 import { addProjectEvent, projectRename, projectDelete, selectProject } from "./events.js";
-import { createAddProjectModal } from "./modals.js";
+import { confirmDeleteModal, createAddProjectModal } from "./modals.js";
 import { setActiveProject } from "./util.js";
 
 let activeProject;
@@ -15,6 +15,7 @@ function createSidebar() {
     sidebar.appendChild(sidebarProjects);
     sidebar.appendChild(createAddProjectButton());
     createAddProjectModal();
+    confirmDeleteModal();
 
     return sidebar;
 }
