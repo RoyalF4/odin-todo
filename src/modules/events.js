@@ -48,6 +48,9 @@ function deleteProjectEvent(event) {
     const container = document.querySelector(`#container-${currentProjectToDelete}`);
     projects.removeProject(currentProjectToDelete);
     container.remove();
+    const todoContainer = document.querySelector('#todoContainer');
+    console.log(getActiveProjectId(), currentProjectToDelete)
+    if(getActiveProjectId() == currentProjectToDelete) todoContainer.textContent = '';
     if((projects.list.length == 0) || (currentProjectToDelete == getActiveProjectId())) {
         const mainHeader = document.querySelector('#mainHeader');
         mainHeader.textContent = '';

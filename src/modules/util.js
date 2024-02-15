@@ -10,7 +10,8 @@ function setActiveProject(project) {
     if(activeProject != project) {
         if(activeProject != undefined) activeProject.classList.toggle('active');
         activeProject = project;
-        let projectId = project.id.slice(11);
+        // let projectId = project.id.slice(11);
+        let projectId = project.id.replace('container-', '');
         // if main hasnt loaded yet, do nothing
         if(mainHeader != null) {
             mainHeader.textContent = projects.getTitleWithId(projectId);
