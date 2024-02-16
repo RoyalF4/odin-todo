@@ -1,13 +1,13 @@
 import { addProjectModal, sidebarProjects, projects, addProjectForm, deleteConfirmModal } from "../index.js";
 import Project from "./Project.js";
 import { confirmDeleteModal } from "./modals.js";
-import { createSidebarItem } from "./sidebar.js";
+import { activeProject, createSidebarItem } from "./sidebar.js";
 import { setActiveProject, getActiveProjectId } from "./util.js";
 
 let currentProjectToDelete;
 
 function selectProject(event) {
-    setActiveProject(event.target);
+    setActiveProject(event.target.parentElement);
 }
 
 function projectRename(event) {
@@ -48,12 +48,12 @@ function deleteProjectEvent(event) {
     const container = document.querySelector(`#container-${currentProjectToDelete}`);
     projects.removeProject(currentProjectToDelete);
     container.remove();
-    const todoContainer = document.querySelector('#todoContainer');
-    console.log(getActiveProjectId(), currentProjectToDelete)
-    if(getActiveProjectId() == currentProjectToDelete) todoContainer.textContent = '';
+    const todosContainer = document.querySelector('.todosContainer');
+    console.log(todosContainer)
+    if(getActiveProjectId() == currentProjectToDelete) todosContainer.textContent = '';
     if((projects.list.length == 0) || (currentProjectToDelete == getActiveProjectId())) {
         const mainHeader = document.querySelector('#mainHeader');
-        mainHeader.textContent = '';
+        mainHeader.textContent = 'No Project Selected';
     }
     deleteConfirmModal.close();
 }
@@ -86,4 +86,12 @@ function closeDeleteModal() {
     deleteConfirmModal.close()
 }
 
-export { addProjectEvent, submitProjectEvent, closeAddProjectEvent, projectRename, submitFormRename, projectDelete, selectProject, closeDeleteModal, deleteProjectEvent, currentProjectToDelete };
+function deleteTodo(event) {
+    let parent = event.target.parentElement;
+    let projectId = activeProject.getAttribute('data-uuid');
+    if(parent.nodeName != 'DIV') parent = parent.parentElement;
+    projects.getProjectWithId(projectId).removeTodo(parent.id);
+    parent.remove();
+}
+
+export { addProjectEvent, submitProjectEvent, closeAddProjectEvent, projectRename, submitFormRename, projectDelete, selectProject, closeDeleteModal, deleteProjectEvent, currentProjectToDelete, deleteTodo };

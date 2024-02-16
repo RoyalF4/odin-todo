@@ -65,4 +65,11 @@ function createHeader() {
     return header;
 }
 
-export { createElement, createElementWithClasses, createElementWithId, createHeader, createTextInput, createButtonWithImage, createInputRename };
+function appendMultipleChildren(parent, children) {
+    for(const child of children) {
+        parent.appendChild(child);
+    }
+    return parent;
+}
+
+export { createElement, createElementWithClasses, createElementWithId, createHeader, createTextInput, createButtonWithImage, createInputRename,appendMultipleChildren };

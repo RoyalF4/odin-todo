@@ -6,12 +6,12 @@ import { createTodoListDOM } from "./mainContent.js";
 
 function setActiveProject(project) {
     const mainHeader = document.querySelector('#mainHeader');
-    const todosContainer = document.querySelector('#todoContainer');
+    const todosContainer = document.querySelector('.todosContainer');
     if(activeProject != project) {
         if(activeProject != undefined) activeProject.classList.toggle('active');
         activeProject = project;
         // let projectId = project.id.slice(11);
-        let projectId = project.id.replace('container-', '');
+        let projectId = project.id.replace('container-', '').replace('projectBtn-', '');
         // if main hasnt loaded yet, do nothing
         if(mainHeader != null) {
             mainHeader.textContent = projects.getTitleWithId(projectId);

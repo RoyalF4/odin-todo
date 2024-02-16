@@ -1,7 +1,8 @@
 import { projects } from "../index.js";
-import { createElement, createElementWithClasses, createElementWithId } from "./createDOM";
+import { createElement, createElementWithClasses, createElementWithId, createButtonWithImage, appendMultipleChildren } from "./createDOM";
 import { activeProject } from "./sidebar";
 import { getActiveProjectId } from "./util.js";
+import { deleteTodo } from "./events.js";
 
 function createMain() {
     const main = createElement('main');
@@ -27,14 +28,28 @@ function createContent() {
 }
 
 function createTodoListDOM(todos) {
-    const todosContainer = createElementWithId('div', 'todoContainer');
+    const todosContainer = createElementWithClasses('div', 'todosContainer');
     for(const todo of todos) {
-        const todoContainer = createElementWithClasses('div', 'todoContainer');
-        todoContainer.textContent = todo.title;
-        todosContainer.appendChild(todoContainer);
+        todosContainer.appendChild(createTodoDOM(todo));
     }
 
     return todosContainer;
+}
+
+function createTodoDOM(todo) {
+    const todoContainer = createElementWithClasses('div', 'todoContainer');
+    todoContainer.id = todo.id;
+    const bulletIcon = createElementWithClasses('img', 'bulletIcon');
+    bulletIcon.src = '../src/images/bullet.svg';
+    const title = createElementWithClasses('div', 'todoTitle');
+    title.textContent = todo.title;
+    const dueDate = createElementWithClasses('div', 'todoDueDate');
+    dueDate.textContent = `Due: ${todo.dueDate}`;
+    const renameButton = createButtonWithImage('todoEdit', '../src/images/edit.svg');
+    const deleteButton = createButtonWithImage('todoDelete', '../src/images/delete.svg');
+    deleteButton.addEventListener('click', (event) => deleteTodo(event));
+
+    return appendMultipleChildren(todoContainer, [bulletIcon, title, dueDate, renameButton, deleteButton]);
 }
 
 export {createMain, createTodoListDOM};

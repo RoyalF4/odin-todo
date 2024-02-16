@@ -1,4 +1,4 @@
-export default Todo;
+import { createUniqueId } from "./createUID";
 
 class Todo {
     constructor(title, description, dueDate, priority) {
@@ -7,6 +7,7 @@ class Todo {
         this._dueDate = dueDate;
         this._priority = priority;
         this._completed = false;
+        this._id = createUniqueId();
     }
 
     get title() {
@@ -29,6 +30,10 @@ class Todo {
         return this._completed;
     }
 
+    get id() {
+        return this._id;
+    }
+
     toggleCompleted() {
         this._completed = !this._completed;
     }
@@ -37,3 +42,5 @@ class Todo {
         return this._completed;
     }
 }
+
+export default Todo;

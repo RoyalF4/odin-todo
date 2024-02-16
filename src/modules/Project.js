@@ -5,7 +5,7 @@ export default Project;
 class Project {
     constructor(title) {
         this._title = title;
-        this._todoList = [];
+        this._list = [];
         this._id = createUniqueId();
     }
 
@@ -22,10 +22,19 @@ class Project {
     }
 
     get todo() {
-        return this._todoList;
+        return this._list;
     }
 
     addTodo(todo) {
-        this._todoList.push(todo)
+        this._list.push(todo)
+    }
+
+    removeTodo(id) {
+        for(const todo of this._list) {
+            if(id == todo.id) {
+                const index = this._list.indexOf(todo)
+                this._list.splice(index, 1);
+            }
+        }
     }
 }
