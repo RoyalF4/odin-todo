@@ -3,8 +3,10 @@ import { createElement, createElementWithClasses, createElementWithId, createBut
 import { activeProject } from "./sidebar";
 import { getActiveProjectId } from "./util.js";
 import { deleteTodo } from "./events.js";
+import { createEditTodoModal } from "./modals.js";
 
 function createMain() {
+    createEditTodoModal();
     const main = createElement('main');
 
     main.appendChild(createHeader());

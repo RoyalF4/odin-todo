@@ -1,4 +1,4 @@
-import { createElementWithId, createTextInput, createElement } from "./createDOM";
+import { createElementWithId, createTextInput, createElement, createElementWithClasses, appendMultipleChildren } from "./createDOM";
 import { body } from "../index.js";
 import { submitProjectEvent, closeAddProjectEvent, closeDeleteModal, deleteProjectEvent } from "./events.js";
 
@@ -59,4 +59,26 @@ function confirmDeleteModal() {
     body.appendChild(dialog);
 }
 
-export { createAddProjectModal, confirmDeleteModal } ;
+function createEditTodoModal() {
+    const dialog = createElementWithId('dialog', editTodoDialog);
+    const form = createElementWithId('form', 'editTodoForm');
+    form.addEventListener('submit', (event) => editTodoSubmitEvent(event));
+    dialog.appendChild(appendMultipleChildren(form, [createLabeledInput('name', 'text', 'required')]));
+
+    body.appendChild(dialog);
+
+}
+
+function createLabeledInput(name, type, required) {
+    const container = createElementWithId('div', `${name}-input`);
+    const label = document.createElement('label');
+    label.htmlFor = name;
+    const input = document.createElement('input');
+    input.type = type;
+    input.name = 'title';
+    input.required = required;
+
+    return appendMultipleChildren(container, [label, input]);
+}
+
+export { createAddProjectModal, confirmDeleteModal, createLabeledInput, createEditTodoModal } ;
