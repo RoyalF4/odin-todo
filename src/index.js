@@ -12,12 +12,12 @@ const todo2 = new Todo('todo2', 'this is todo2', '11/03/2000', 'high');
 const todo3 = new Todo('todo3', 'this is todo3', '12/24/2024', 'medium');
 
 const defaultProject = new Project('Default');
-defaultProject.addTodo(todo1);
-const project1 = new Project('Project1');
-project1.addTodo(todo2);
-project1.addTodo(todo3);
+// defaultProject.addTodo(todo1);
+// const project1 = new Project('Project1');
+// project1.addTodo(todo2);
+// project1.addTodo(todo3);
 
-const projects = new ProjectList([defaultProject, project1]);
+const projects = new ProjectList([defaultProject]);
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const body = document.querySelector('body');
@@ -28,6 +28,10 @@ const main = document.querySelector('main');
 const addProjectModal = document.querySelector('#addProjectModal');
 const addProjectForm = document.querySelector('#addProjectForm');
 const deleteConfirmModal = document.querySelector('#deleteConfirmDialog');
+const editTodoDialog = document.querySelector('#editTodoDialog');
+const editTodoForm = document.querySelector('#editTodoForm');
+const addTodoDialog = document.querySelector('#addTodoDialog');
+const addTodoForm = document.querySelector('#addTodoForm');
 
 
-export { body, header, sidebarProjects, main, projects, addProjectModal, addProjectForm, deleteConfirmModal};
+export { body, header, sidebarProjects, main, projects, addProjectModal, addProjectForm, deleteConfirmModal, editTodoDialog, editTodoForm, addTodoDialog, addTodoForm};

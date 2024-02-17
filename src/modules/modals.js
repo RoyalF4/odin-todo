@@ -1,6 +1,7 @@
 import { createElementWithId, createTextInput, createElement, createElementWithClasses, appendMultipleChildren } from "./createDOM";
 import { body } from "../index.js";
-import { submitProjectEvent, closeAddProjectEvent, closeDeleteModal, deleteProjectEvent } from "./events.js";
+import { submitProjectEvent, closeAddProjectEvent, closeDeleteModal, deleteProjectEvent, closeEditTodo, editTodoSubmit, modalTodo, closeAddTodo, addTodoSubmit } from "./events.js";
+import { format } from 'date-fns';
 
 const PLACEHOLDER_TEXT = {
     title: 'Enter project title...',
@@ -60,25 +61,111 @@ function confirmDeleteModal() {
 }
 
 function createEditTodoModal() {
-    const dialog = createElementWithId('dialog', editTodoDialog);
+    const dialog = createElementWithId('dialog', 'editTodoDialog');
     const form = createElementWithId('form', 'editTodoForm');
-    form.addEventListener('submit', (event) => editTodoSubmitEvent(event));
-    dialog.appendChild(appendMultipleChildren(form, [createLabeledInput('name', 'text', 'required')]));
+    form.addEventListener('submit', (event) => editTodoSubmit(event))
+    const buttonContainer = document.createElement('div');
+    const submitButton = document.createElement('button');
+    submitButton.textContent = 'Submit';
+    submitButton.type = 'submit';
+    const cancelButton = document.createElement('button');
+    cancelButton.textContent = 'Close';
+    cancelButton.type = 'button';
+    cancelButton.addEventListener('click', () => closeEditTodo())
+    buttonContainer.appendChild(submitButton);
+    buttonContainer.appendChild(cancelButton);
+    dialog.appendChild(appendMultipleChildren(form, [editNameInput('name', 'text', 'required'), createDateInput(), createPriorityInput(), buttonContainer]));
 
     body.appendChild(dialog);
 
 }
 
-function createLabeledInput(name, type, required) {
-    const container = createElementWithId('div', `${name}-input`);
+function editNameInput(name, type, required) {
+    const container = createElementWithClasses('div', `${name}-input`);
     const label = document.createElement('label');
     label.htmlFor = name;
+    label.textContent = capitalizeFirstLetter(name);
     const input = document.createElement('input');
     input.type = type;
+    input.id = 'name'
     input.name = 'title';
     input.required = required;
 
     return appendMultipleChildren(container, [label, input]);
 }
 
-export { createAddProjectModal, confirmDeleteModal, createLabeledInput, createEditTodoModal } ;
+function createDateInput() {
+    const todaysDate = format(new Date(), 'yyyy-MM-dd');
+    const container = document.createElement('div');
+    container.classList.add('date-input');
+    const label = document.createElement('label');
+    label.htmlFor = 'dueDate';
+    label.textContent = 'Due Date';
+    const input = document.createElement('input');
+    input.type = 'date';
+    input.name = 'dueDate';
+    input.id = 'dueDate';
+    input.required = true;
+    input.value = todaysDate;
+    input.min = todaysDate;
+    container.appendChild(label);
+    container.appendChild(input);
+
+    return container;
+}
+
+function createPriorityInput() {
+    const fieldset = document.createElement('fieldset');
+    const legend = document.createElement('legend');
+    legend.textContent = 'Priority';
+    fieldset.appendChild(legend);
+    fieldset.appendChild(createRadioInput('low'));
+    fieldset.appendChild(createRadioInput('medium'));
+    fieldset.appendChild(createRadioInput('high'));
+
+    return fieldset;
+}
+
+function capitalizeFirstLetter(word) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+}
+
+function createRadioInput(name) {
+    const container = document.createElement('div');
+    const input = document.createElement('input');
+    input.id = `${name}Radio`;
+    input.required = true;
+    input.type = 'radio';
+    input.name = 'priority';
+    input.id = name;
+    input.value = name;
+    const label = document.createElement('label');
+    label.htmlFor = name;
+    label.textContent = capitalizeFirstLetter(name);
+    container.appendChild(input);
+    container.appendChild(label);
+
+    return container;
+}
+
+function createAddTodoModal() {
+    const dialog = createElementWithId('dialog', 'addTodoDialog');
+    const form = createElementWithId('form', 'addTodoForm');
+    form.addEventListener('submit', (event) => addTodoSubmit(event))
+    const buttonContainer = document.createElement('div');
+    const submitButton = document.createElement('button');
+    submitButton.textContent = 'Submit';
+    submitButton.type = 'submit';
+    const cancelButton = document.createElement('button');
+    cancelButton.textContent = 'Close';
+    cancelButton.type = 'button';
+    cancelButton.addEventListener('click', () => closeAddTodo())
+    buttonContainer.appendChild(submitButton);
+    buttonContainer.appendChild(cancelButton);
+    dialog.appendChild(appendMultipleChildren(form, [editNameInput('name', 'text', 'required'), createDateInput(), createPriorityInput(), buttonContainer]));
+
+    body.appendChild(dialog);
+
+}
+
+export { createAddProjectModal, confirmDeleteModal, editNameInput, createEditTodoModal, createAddTodoModal } ;

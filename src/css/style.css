@@ -1,7 +1,31 @@
+:root {
+    --lowPriority: #008000;
+    --mediumPriority: #ffff00;
+    --highPriority: #ff0000;
+
+    --svgFilterGreen: invert(29%) sepia(88%) saturate(1339%) hue-rotate(92deg) brightness(90%) contrast(103%);
+    --svgFilterYellow: invert(98%) sepia(76%) saturate(7500%) hue-rotate(354deg) brightness(101%) contrast(104%);
+    --svgFilterRed: invert(20%) sepia(64%) saturate(7486%) hue-rotate(356deg) brightness(102%) contrast(121%); 
+
+    --primaryBlue: #4169E1;
+    --bgBlue: #ADD8E6;
+    --textBlue: #000080;
+    --secondaryBlue: #000080;
+    --buttonBlue: #6495ED;
+    --hoverBlue: #1E90FF;
+    --accentBlue: #87CEEB;
+
+}
+
 body {
     display: grid;
     grid-template-columns: 200px 1fr;
     grid-template-rows: 100px 1fr;
+}
+
+header,
+#mainHeader {
+    cursor: default;
 }
 
 button {
@@ -15,16 +39,20 @@ header {
     align-items: center;
     font-size: 3rem;
     grid-column: span 2;
-    background: black;
-    color: white;
+    background: var(--secondaryBlue);
+    color: var(--accentBlue);
 }
 
 #sidebar {
     width: 200px;
     height: 100vh;
-    background: gray;
+    background: var(--primaryBlue);
     display: flex;
     flex-direction: column;
+}
+
+#sidebar * {
+    color: var(--textBlue)
 }
 
 .sidebarItem {
@@ -60,13 +88,13 @@ header {
     align-items: center;
 }
 
-#sidebar button {
+#sidebarProjects button {
     background: none;
     border: none;
 }
 
 .sidebarItem:hover {
-    background: rgb(88, 28, 28);
+    background: var(--hoverBlue);
 }
 
 .projectDeleteBtn,
@@ -86,17 +114,40 @@ header {
     transform: scale(.9);
 }
 
+#addProjectButton,
+#addTodoBtn {
+    background: var(--hoverBlue);
+    font-size: 1rem;
+    height: 40px;
+    width: 100px;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 2px 5px black;
+}
+
+#addProjectButton:active,
+#addTodoBtn:active {
+    transform: scale(.9);
+}
+
+#addProjectButton {
+    align-self: center;
+}
+
 main {
     height: 100vh;
-    background: lightgreen;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--bgBlue);
 }
 
 #mainHeader {
     width: 100%;
     height: 50px;
-    background: black;
-    color: white;
+    background: var(--primaryBlue);
+    color: var(--textBlue);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -109,7 +160,9 @@ main {
     margin: 10px 0 0 0;
 }
 
-
+.todosContainer {
+    width: 100%;
+}
 
 .todoContainer {
     display: flex;
@@ -120,9 +173,17 @@ main {
     margin: 0 0 10px 0;
 }
 
+.todoTitle {
+    width: 400px;
+}
+
 .todoDueDate {
     flex: 1;
     text-align: center;
+}
+
+.todoDeleteBtn {
+    margin: 0 0 0 10px;
 }
 
 .todoEditImg,
@@ -145,7 +206,22 @@ main {
 
 .bulletIcon {
     width: 50px;
-    filter: invert(60%) sepia(93%) saturate(3087%) hue-rotate(81deg) brightness(118%) contrast(120%);
+}
+
+#low {
+    accent-color: var(--lowPriority);
+}
+
+#medium {
+    accent-color: var(--mediumPriority);
+}
+
+#high {
+    accent-color: var(--highPriority);
+}
+
+#addTodoButton {
+    justify-self: center;
 }
 
 .hidden {

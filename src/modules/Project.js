@@ -37,4 +37,13 @@ class Project {
             }
         }
     }
+
+    getTodoWithId(id) {
+        for(let i = 0; i < this._list.length; i++) {
+            if(id == this._list[i].id) {
+                return this._list[i];
+            }
+        }
+        console.log('did not find id')
+    }
 }

@@ -34,6 +34,18 @@ class Todo {
         return this._id;
     }
 
+    set title(title) {
+        this._title = title;
+    }
+
+    set dueDate(dueDate) {
+        this._dueDate = dueDate;
+    }
+
+    set priority(priority) {
+        this._priority = priority;
+    }
+
     toggleCompleted() {
         this._completed = !this._completed;
     }

@@ -2,10 +2,15 @@ import { activeProject } from "./sidebar.js";
 import { main, projects } from "../index.js";
 import { createTodoListDOM } from "./mainContent.js";
 
-
+const FILTERS = {
+    low: 'var(--svgFilterGreen)',
+    medium: 'var(--svgFilterYellow',
+    high: 'var(--svgFilterRed)'
+}
 
 function setActiveProject(project) {
     const mainHeader = document.querySelector('#mainHeader');
+    console.log(mainHeader)
     const todosContainer = document.querySelector('.todosContainer');
     if(activeProject != project) {
         if(activeProject != undefined) activeProject.classList.toggle('active');
@@ -27,4 +32,8 @@ function getActiveProjectId() {
     return activeProject.id.slice(10);
 }
 
-export { setActiveProject, getActiveProjectId };
+function getSvgFilter(priority) {
+    return FILTERS[priority];
+}
+
+export { setActiveProject, getActiveProjectId, getSvgFilter };
