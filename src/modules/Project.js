@@ -1,7 +1,5 @@
 import { createUniqueId } from "./createUID";
 
-export default Project;
-
 class Project {
     constructor(title) {
         this._title = title;
@@ -47,3 +45,5 @@ class Project {
         console.log('did not find id')
     }
 }
+
+export default Project;
