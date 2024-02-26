@@ -33,5 +33,14 @@ const editTodoForm = document.querySelector('#editTodoForm');
 const addTodoDialog = document.querySelector('#addTodoDialog');
 const addTodoForm = document.querySelector('#addTodoForm');
 
+const domElements = {
+    body
+    header,
+    sidebarProjects
+}
 
-export { body, header, sidebarProjects, main, projects, addProjectModal, addProjectForm, deleteConfirmModal, editTodoDialog, editTodoForm, addTodoDialog, addTodoForm};
+
+// export { body, header, sidebarProjects, main, projects, addProjectModal, addProjectForm, deleteConfirmModal, editTodoDialog, editTodoForm, addTodoDialog, addTodoForm};
+export { domElements }
+console.log(domElements.header)
+

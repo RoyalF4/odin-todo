@@ -2,7 +2,7 @@ import { projects, addTodoDialog } from "../index.js";
 import { createElement, createElementWithClasses, createElementWithId, createButtonWithImage, appendMultipleChildren } from "./createDOM";
 import { activeProject } from "./sidebar";
 import { getActiveProjectId, getSvgFilter } from "./util.js";
-import { deleteTodo, editTodo } from "./events.js";
+import { deleteTodo, editTodo } from "./events.js"; // 95% sure that you no need to add .js
 import { createEditTodoModal, createAddTodoModal } from "./modals.js";
 
 function createMain() {
